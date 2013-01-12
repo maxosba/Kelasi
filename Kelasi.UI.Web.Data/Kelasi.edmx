@@ -1,0 +1,625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KelasiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="KelasiModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="KelasiModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Courses" EntityType="KelasiModel.Store.Courses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Languages" EntityType="KelasiModel.Store.Languages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Plans" EntityType="KelasiModel.Store.Plans" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Topics" EntityType="KelasiModel.Store.Topics" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="KelasiModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users_Authors" EntityType="KelasiModel.Store.Users_Authors" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_Categories_dbo_Topics_Topic_TopicId" Association="KelasiModel.Store.FK_dbo_Categories_dbo_Topics_Topic_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Categories_Category_CategoryId" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Categories_Category_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Languages_Language_LanguageId" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Languages_Language_LanguageId">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Topics_Topic_TopicId" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Topics_Topic_TopicId">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId" Association="KelasiModel.Store.FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_Authors_dbo_Users_User_UserId" Association="KelasiModel.Store.FK_dbo_Users_Authors_dbo_Users_User_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Topic_TopicId" Type="int" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ReleasedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="NumberOfviewers" Type="int" Nullable="false" />
+          <Property Name="NumberOfSubscribers" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="Category_CategoryId" Type="int" />
+          <Property Name="Topic_TopicId" Type="int" />
+          <Property Name="AuthorI_AuthorId" Type="int" />
+          <Property Name="Language_LanguageId" Type="int" />
+          <Property Name="Author_AuthorId" Type="int" />
+          <Property Name="Author_AuthorId1" Type="int" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Plans">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="TopicId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users_Authors">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Name="AuthorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Bio" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="User_UserId" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_Categories_dbo_Topics_Topic_TopicId">
+          <End Role="Topics" Type="KelasiModel.Store.Topics" Multiplicity="0..1" />
+          <End Role="Categories" Type="KelasiModel.Store.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="Topic_TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Categories_Category_CategoryId">
+          <End Role="Categories" Type="KelasiModel.Store.Categories" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Category_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Languages_Language_LanguageId">
+          <End Role="Languages" Type="KelasiModel.Store.Languages" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Language_LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Topics_Topic_TopicId">
+          <End Role="Topics" Type="KelasiModel.Store.Topics" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Topic_TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId">
+          <End Role="Users_Authors" Type="KelasiModel.Store.Users_Authors" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Author_AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1">
+          <End Role="Users_Authors" Type="KelasiModel.Store.Users_Authors" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Author_AuthorId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId">
+          <End Role="Users_Authors" Type="KelasiModel.Store.Users_Authors" Multiplicity="0..1" />
+          <End Role="Courses" Type="KelasiModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="AuthorI_AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_Authors_dbo_Users_User_UserId">
+          <End Role="Users" Type="KelasiModel.Store.Users" Multiplicity="0..1" />
+          <End Role="Users_Authors" Type="KelasiModel.Store.Users_Authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Users_Authors">
+              <PropertyRef Name="User_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KelasiModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="KelasiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="KelasiModel.Category" />
+          <EntitySet Name="Courses" EntityType="KelasiModel.Cours" />
+          <EntitySet Name="Languages" EntityType="KelasiModel.Language" />
+          <EntitySet Name="Plans" EntityType="KelasiModel.Plan" />
+          <EntitySet Name="Topics" EntityType="KelasiModel.Topic" />
+          <EntitySet Name="Users" EntityType="KelasiModel.User" />
+          <EntitySet Name="Users_Authors" EntityType="KelasiModel.Users_Authors" />
+          <AssociationSet Name="FK_dbo_Categories_dbo_Topics_Topic_TopicId" Association="KelasiModel.FK_dbo_Categories_dbo_Topics_Topic_TopicId">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Categories_Category_CategoryId" Association="KelasiModel.FK_dbo_Courses_dbo_Categories_Category_CategoryId">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Languages_Language_LanguageId" Association="KelasiModel.FK_dbo_Courses_dbo_Languages_Language_LanguageId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Topics_Topic_TopicId" Association="KelasiModel.FK_dbo_Courses_dbo_Topics_Topic_TopicId">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId" Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1" Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId" Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId">
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Users_Authors_dbo_Users_User_UserId" Association="KelasiModel.FK_dbo_Users_Authors_dbo_Users_User_UserId">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Users_Authors" EntitySet="Users_Authors" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Type="Int32" Name="CategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Topic_TopicId" />
+          <NavigationProperty Name="Topic" Relationship="KelasiModel.FK_dbo_Categories_dbo_Topics_Topic_TopicId" FromRole="Category" ToRole="Topic" />
+          <NavigationProperty Name="Courses" Relationship="KelasiModel.FK_dbo_Courses_dbo_Categories_Category_CategoryId" FromRole="Category" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Type="Int32" Name="CourseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ReleasedDate" Nullable="false" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" />
+          <Property Type="Int32" Name="Duration" Nullable="false" />
+          <Property Type="Int32" Name="NumberOfviewers" Nullable="false" />
+          <Property Type="Int32" Name="NumberOfSubscribers" Nullable="false" />
+          <Property Type="Int32" Name="Size" Nullable="false" />
+          <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Category_CategoryId" />
+          <Property Type="Int32" Name="Topic_TopicId" />
+          <Property Type="Int32" Name="AuthorI_AuthorId" />
+          <Property Type="Int32" Name="Language_LanguageId" />
+          <Property Type="Int32" Name="Author_AuthorId" />
+          <Property Type="Int32" Name="Author_AuthorId1" />
+          <NavigationProperty Name="Category" Relationship="KelasiModel.FK_dbo_Courses_dbo_Categories_Category_CategoryId" FromRole="Cours" ToRole="Category" />
+          <NavigationProperty Name="Language" Relationship="KelasiModel.FK_dbo_Courses_dbo_Languages_Language_LanguageId" FromRole="Cours" ToRole="Language" />
+          <NavigationProperty Name="Topic" Relationship="KelasiModel.FK_dbo_Courses_dbo_Topics_Topic_TopicId" FromRole="Cours" ToRole="Topic" />
+          <NavigationProperty Name="Users_Authors" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId" FromRole="Cours" ToRole="Users_Authors" />
+          <NavigationProperty Name="Users_Authors1" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1" FromRole="Cours" ToRole="Users_Authors" />
+          <NavigationProperty Name="Users_Authors2" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId" FromRole="Cours" ToRole="Users_Authors" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Type="Int32" Name="LanguageId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Courses" Relationship="KelasiModel.FK_dbo_Courses_dbo_Languages_Language_LanguageId" FromRole="Language" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Type="Int32" Name="PlanId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Type="Int32" Name="TopicId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="KelasiModel.FK_dbo_Categories_dbo_Topics_Topic_TopicId" FromRole="Topic" ToRole="Category" />
+          <NavigationProperty Name="Courses" Relationship="KelasiModel.FK_dbo_Courses_dbo_Topics_Topic_TopicId" FromRole="Topic" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Login" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MiddleName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FullName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DOB" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Gender" Nullable="false" />
+          <Property Type="DateTime" Name="RegisteredDate" Nullable="false" />
+          <NavigationProperty Name="Users_Authors" Relationship="KelasiModel.FK_dbo_Users_Authors_dbo_Users_User_UserId" FromRole="User" ToRole="Users_Authors" />
+        </EntityType>
+        <EntityType Name="Users_Authors">
+          <Key>
+            <PropertyRef Name="AuthorId" />
+          </Key>
+          <Property Type="Int32" Name="AuthorId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Bio" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="User_UserId" />
+          <NavigationProperty Name="Courses" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId" FromRole="Users_Authors" ToRole="Cours" />
+          <NavigationProperty Name="Courses1" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1" FromRole="Users_Authors" ToRole="Cours" />
+          <NavigationProperty Name="Courses2" Relationship="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId" FromRole="Users_Authors" ToRole="Cours" />
+          <NavigationProperty Name="User" Relationship="KelasiModel.FK_dbo_Users_Authors_dbo_Users_User_UserId" FromRole="Users_Authors" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_dbo_Categories_dbo_Topics_Topic_TopicId">
+          <End Type="KelasiModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="KelasiModel.Category" Role="Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="Topic_TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Categories_Category_CategoryId">
+          <End Type="KelasiModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Category_CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Languages_Language_LanguageId">
+          <End Type="KelasiModel.Language" Role="Language" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Language_LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Topics_Topic_TopicId">
+          <End Type="KelasiModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="TopicId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Topic_TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId">
+          <End Type="KelasiModel.Users_Authors" Role="Users_Authors" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Author_AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1">
+          <End Type="KelasiModel.Users_Authors" Role="Users_Authors" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="Author_AuthorId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId">
+          <End Type="KelasiModel.Users_Authors" Role="Users_Authors" Multiplicity="0..1" />
+          <End Type="KelasiModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Authors">
+              <PropertyRef Name="AuthorId" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="AuthorI_AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Users_Authors_dbo_Users_User_UserId">
+          <End Type="KelasiModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="KelasiModel.Users_Authors" Role="Users_Authors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Users_Authors">
+              <PropertyRef Name="User_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KelasiModelStoreContainer" CdmEntityContainer="KelasiEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="KelasiModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Topic_TopicId" ColumnName="Topic_TopicId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="KelasiModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Author_AuthorId1" ColumnName="Author_AuthorId1" />
+                <ScalarProperty Name="Author_AuthorId" ColumnName="Author_AuthorId" />
+                <ScalarProperty Name="Language_LanguageId" ColumnName="Language_LanguageId" />
+                <ScalarProperty Name="AuthorI_AuthorId" ColumnName="AuthorI_AuthorId" />
+                <ScalarProperty Name="Topic_TopicId" ColumnName="Topic_TopicId" />
+                <ScalarProperty Name="Category_CategoryId" ColumnName="Category_CategoryId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="NumberOfSubscribers" ColumnName="NumberOfSubscribers" />
+                <ScalarProperty Name="NumberOfviewers" ColumnName="NumberOfviewers" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ReleasedDate" ColumnName="ReleasedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="KelasiModel.Language">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="KelasiModel.Plan">
+              <MappingFragment StoreEntitySet="Plans">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="KelasiModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="KelasiModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Authors">
+            <EntityTypeMapping TypeName="KelasiModel.Users_Authors">
+              <MappingFragment StoreEntitySet="Users_Authors">
+                <ScalarProperty Name="User_UserId" ColumnName="User_UserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Kelasi">
+        <EntityTypeShape EntityType="KelasiModel.Category" Width="1.5" PointX="3" PointY="3.625" Height="2.172587890625" />
+        <EntityTypeShape EntityType="KelasiModel.Cours" Width="1.5" PointX="5.25" PointY="2" Height="5.4417122395833317" />
+        <EntityTypeShape EntityType="KelasiModel.Language" Width="1.5" PointX="3" PointY="0.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="KelasiModel.Plan" Width="1.5" PointX="7.75" PointY="1.625" Height="1.7879850260416657" />
+        <EntityTypeShape EntityType="KelasiModel.Topic" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333322" />
+        <EntityTypeShape EntityType="KelasiModel.User" Width="1.5" PointX="0.75" PointY="7.25" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="KelasiModel.Users_Authors" Width="1.5" PointX="3" PointY="7.625" Height="2.5571907552083317" />
+        <AssociationConnector Association="KelasiModel.FK_dbo_Categories_dbo_Topics_Topic_TopicId" >
+          <ConnectorPoint PointX="2.25" PointY="4.7401432291666659" />
+          <ConnectorPoint PointX="3" PointY="4.7401432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Categories_Category_CategoryId" >
+          <ConnectorPoint PointX="4.5" PointY="4.7112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="4.7112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Languages_Language_LanguageId" >
+          <ConnectorPoint PointX="4.5" PointY="2.2689925130208333" />
+          <ConnectorPoint PointX="5.25" PointY="2.2689925130208333" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Topics_Topic_TopicId" >
+          <ConnectorPoint PointX="1.5" PointY="3.75" />
+          <ConnectorPoint PointX="1.5" PointY="3.0814925130208333" />
+          <ConnectorPoint PointX="5.25" PointY="3.0814925130208333" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId" >
+          <ConnectorPoint PointX="4.5" PointY="8.9035953776041659" />
+          <ConnectorPoint PointX="6" PointY="8.9035953776041659" />
+          <ConnectorPoint PointX="6" PointY="7.4417122395833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_Author_AuthorId1" >
+          <ConnectorPoint PointX="4.5" PointY="8.2330451888020821" />
+          <ConnectorPoint PointX="5.5937475" PointY="8.2330451888020821" />
+          <ConnectorPoint PointX="5.5937475" PointY="7.4417122395833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Courses_dbo_Users_Authors_AuthorI_AuthorId" >
+          <ConnectorPoint PointX="4.5" PointY="9.57414556640625" />
+          <ConnectorPoint PointX="6.4062525" PointY="9.57414556640625" />
+          <ConnectorPoint PointX="6.4062525" PointY="7.4417122395833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="KelasiModel.FK_dbo_Users_Authors_dbo_Users_User_UserId" >
+          <ConnectorPoint PointX="2.25" PointY="8.9035953776041659" />
+          <ConnectorPoint PointX="3" PointY="8.9035953776041659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Kelasi.Model.Course>
+
+@{
+    ViewBag.Title = "Courses Library";
+}
+
+<h2>Courses Library</h2>
+
+<table>
+   @if (!Model.Any())
+   {
+     @Html.Display("No Records Found");
+   }
+   else
+   {
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Number of Viewers
+        </th>
+        <th>
+            Authors
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            Level
+        </th>
+       
+        <th>
+            Released Date
+        </th>
+        <th></th>
+    </tr>
+  
+ 
+    foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfviewers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorI.User.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleasedDate)
+        </td>
+    </tr>
+    }
+    }
+
+</table>
